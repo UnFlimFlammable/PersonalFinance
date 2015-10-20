@@ -305,4 +305,48 @@ epiphany.main = function () {
 	// 	return "Address: streetNumber=" this.streetNumber + ", street=" + this.street + ", city=" + this.city
 	// 			 + ", state=" + this.state + ", zipCode=" + this.zipCode + ", country=" + this.country;
 	// }
+
+	/* THE USER CLASS */
+
+    /** @constructor */
+
+    function User() {
+            this.userName = "";
+            this.password = "";
+            this.email = "";
+            this.enabled = true;
+		        this.address = "";
+
+		    object.defineProperty(this, "userName", {
+
+		        get: function() { return this.userName; },
+		        set: function(userName) {this.userName = userName}
+		    });
+
+		    object.defineProperty(this, "password", {
+
+		        get: function() { return this.password; },
+		        set: function(password) {this.password = password}
+		    });
+
+		    object.defineProperty(this, "email", {
+
+		        get: function() { return this.email; },
+		        set: function(email) {this.email = email}
+		    });
+
+		    object.defineProperty(this, "enabled", {
+
+		        get: function() { return this.enabled; },
+		        set: function(enabled) {this.enabled = enabled}
+		    });
+
+		    object.defineProperty(this, "address", {
+
+		        get: function() { return this.address; },
+		        set: function(address) {this.address = address}
+		    });
+
+		}
+
 } //end epiphany
