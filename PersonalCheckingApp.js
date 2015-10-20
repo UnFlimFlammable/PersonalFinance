@@ -123,6 +123,11 @@ epiphany.main = function () {
 					"Deposit";
 				}}
 		})
+
+		this.prototype.transferToRecipient = function(AccountFrom, AccountTo){
+			
+		}
+
 	}
 
 	Transaction.idCounter = 0;
@@ -316,12 +321,21 @@ epiphany.main = function () {
             this.email = "";
             this.enabled = true;
 		        this.address = "";
+						this.accounts = [];
 
 		    object.defineProperty(this, "userName", {
 
 		        get: function() { return this.userName; },
 		        set: function(userName) {this.userName = userName}
 		    });
+
+				object.defineProperty(this, "accounts", {
+						get: function() { return this.accounts; },
+						set: function(accounts) {this.accounts = accounts;},
+						removeAccount: function(account){this.accounts.splice(this.indexOf(account), 1);},
+						addAccount: function(account){this.accounts.push(account);}
+				});
+
 
 		    object.defineProperty(this, "password", {
 
