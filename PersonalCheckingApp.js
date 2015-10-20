@@ -1,6 +1,6 @@
 var epiphany = epiphany || {};
 
-epiphany.main = (function () {
+epiphany.main = function () {
 
 	//////* THE ACCOUNT CLASS */////
 
@@ -59,8 +59,9 @@ epiphany.main = (function () {
 	Account.prototype.toString = function () {
 		var string;
 		for (var i in this) {
-			if(this.hasOwnProperty(i))
-				string = i + ":" + this[i] + "; ");
+			if(this.hasOwnProperty(i)){
+				string = i + ":" + this[i] + "; ";
+			}
 		}
 		return string;
 	}
@@ -75,12 +76,12 @@ epiphany.main = (function () {
 		return array;
 	}
 
-	Account.prototype.sortTransactionByAmount(){
+	Account.prototype.sortTransactionByAmount = function(){
 		this.transactions.sort(function(a, b){
 	    if(a.amount < b.amount) return -1;
 	    if(a.amount > b.amount) return 1;
 	    return 0;
-		})
+		});
 	}
 	// Account.prototype.toString = function () {
 	// 	var fullString = "Account Type: " + this.accountType + ", Account Name: " + this.accountName + ", Balance: " + this.balance;
@@ -145,7 +146,7 @@ epiphany.main = (function () {
 		var string;
 		for (var i in this) {
 			if(this.hasOwnProperty(i))
-				string = i + ":" + this[i] + "; ");
+				string = i + ":" + this[i] + "; ";
 		}
 		return string;
 	}
@@ -232,7 +233,7 @@ epiphany.main = (function () {
 		var string;
 		for (var i in this) {
 			if(this.hasOwnProperty(i))
-				string = i + ":" + this[i] + "; ");
+				string = i + ":" + this[i] + "; ";
 		}
 		return string;
 	}
@@ -246,7 +247,7 @@ epiphany.main = (function () {
 	/* THE ADDRESS CLASS */
 
 	/** @constructor */
-	function Address() = {
+	function Address(){
 		this.streetNumber = 0;
 		this.street = "";
 		this.city = "";
@@ -295,7 +296,7 @@ epiphany.main = (function () {
 		var string;
 		for (var i in this) {
 			if(this.hasOwnProperty(i))
-				string = i + ":" + this[i] + "; ");
+				string = i + ":" + this[i] + "; ";
 		}
 		return string;
 	}
@@ -304,5 +305,4 @@ epiphany.main = (function () {
 	// 	return "Address: streetNumber=" this.streetNumber + ", street=" + this.street + ", city=" + this.city
 	// 			 + ", state=" + this.state + ", zipCode=" + this.zipCode + ", country=" + this.country;
 	// }
-
-}) //end epiphany
+} //end epiphany
