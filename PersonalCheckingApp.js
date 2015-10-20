@@ -161,6 +161,7 @@ epiphany.main = function () {
 		this.id = Recipient.idCounter++;
 		this.name = "";
 
+
 		Object.defineProperty(this, "id", {
 			get: function () { return this.id; },
 			set: function(difId) { if(difId>0 && difId>Recipient.idCounter) {this.id = difId;
@@ -174,61 +175,6 @@ epiphany.main = function () {
 	}
 
 	Recipient.idCounter = 0;
-
-	Recipient.prototype.setAddressStreetNumber = function(
-		/** !number */ number) {
-		this.Address.streetNumber = number;
-	}
-
-	Recipient.prototype.getAddressStreetNumber = function () {
-		return this.Address.streetNumber
-	}
-
-
-	Recipient.prototype.setAddressStreet = function(
-		/** !number */ street) {
-		this.Address.street = street;
-	}
-
-	Recipient.prototype.getAddressStreet = function () {
-		return this.Address.street
-	}
-
-	Recipient.prototype.setAddressCity = function(
-		/** !string */ city) {
-		this.Address.city = city;
-	}
-
-	Recipient.prototype.getAddressCity = function () {
-		return this.Address.city;
-	}
-
-	Recipient.prototype.setAddressState = function(
-		/** !string */ state) {
-		this.Address.state = state;
-	}
-
-	Recipient.prototype.getAddressState = function () {
-		return this.Address.state;
-	}
-
-	Recipient.prototype.setAddressZipCode = function(
-		/** !number */ zip) {
-		this.Address.zipCode = zip;
-	}
-
-	Recipient.prototype.getAddressZipCode = function () {
-		return this.Address.zipCode;
-	}
-
-	Recipient.prototype.setAddressCountry = function(
-		/** !number */ country) {
-		this.Address.country = county;
-	}
-
-	Recipient.prototype.getAddressCountry = function () {
-		return this.Address.country;
-	}
 
 	Recipient.prototype.toString = function () {
 		var string;
