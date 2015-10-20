@@ -126,7 +126,6 @@ epiphany.main = function () {
 		})
 
 		this.prototype.transferToRecipient = function(AccountFrom, AccountTo){
-			
 		}
 
 	}
