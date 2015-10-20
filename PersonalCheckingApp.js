@@ -84,7 +84,8 @@ epiphany.main = function () {
 		});
 	}
 	// Account.prototype.toString = function () {
-	// 	var fullString = "Account Type: " + this.accountType + ", Account Name: " + this.accountName + ", Balance: " + this.balance;
+	// 	var fullString = "Account Type: " + this.accountType + ", Account Name: "
+	//	+ this.accountName + ", Balance: " + this.balance;
 	// 	return this.fullString;
 	// }
 
@@ -258,7 +259,9 @@ epiphany.main = function () {
 		Object.defineProperty(this, "streetNumber", {
 			get: function () { return this.streetNumber; },
 			set: function(
-				/** !number */ streetNumber) { if(streetNumber>0) this.streetNumber = streetNumber }
+				/** !number */ streetNumber) {
+					if(streetNumber>0) this.streetNumber = streetNumber
+				}
 		})
 
 		Object.defineProperty(this, "street", {
@@ -302,7 +305,8 @@ epiphany.main = function () {
 	}
 
 	// Address.prototype.ToString = function () {
-	// 	return "Address: streetNumber=" this.streetNumber + ", street=" + this.street + ", city=" + this.city
-	// 			 + ", state=" + this.state + ", zipCode=" + this.zipCode + ", country=" + this.country;
+	// 	return "Address: streetNumber=" this.streetNumber + ", street="
+	// 	+ this.street + ", city=" + this.city
+	//  + ", state=" + this.state + ", zipCode=" + this.zipCode + ", country=" + this.country;
 	// }
 } //end epiphany
