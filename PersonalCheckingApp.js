@@ -126,6 +126,11 @@ epiphany.main = function () {
 		})
 
 		this.prototype.transferToRecipient = function(AccountFrom, AccountTo){
+<<<<<<< HEAD
+=======
+				//Pass this transaction object to a web service that will post and return a success / fail
+				//Make sure to update accounts to reflect the change, force a page reload if necessary
+>>>>>>> 3edffda8630680030599cb1d7f58b014cef6cd74
 		}
 
 	}
@@ -313,3 +318,4 @@ epiphany.main = function () {
 		}
 
 } //end epiphany
+module.exports = epiphany
