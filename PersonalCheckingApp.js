@@ -14,12 +14,12 @@ epiphany.main = (function () {
 
 		Object.defineProperty(this, "accountName", {
 			get: function () { return this.accountName; },
-			set: function(accountName) { this.accountName = accountName } 
+			set: function(accountName) { this.accountName = accountName }
 		})
 
 		Object.defineProperty(this, "accountType", {
 			get: function () { return this.accountType; },
-			set: function(accountType) { this.accountType = accountType } 
+			set: function(accountType) { this.accountType = accountType }
 		})
 
 		Object.defineProperty(this, "balance", {
@@ -65,9 +65,23 @@ epiphany.main = (function () {
 		return string;
 	}
 
-	//TODO: Account.prototype.sortTransactionByName()
-	//TODO: Account.prototype.sortTransactionByAmount()
+	Account.prototype.sortTransactionByName = function(){
+		var array = this.transactions.sort(function(a, b){
+	    if(a.recipient.name < b.recipient.name) return -1;
+	    if(a.recipient.name > b.recipient.name) return 1;
+	    return 0;
+		});
 
+		return array;
+	}
+
+	Account.prototype.sortTransactionByAmount(){
+		this.transactions.sort(function(a, b){
+	    if(a.amount < b.amount) return -1;
+	    if(a.amount > b.amount) return 1;
+	    return 0;
+		})
+	}
 	// Account.prototype.toString = function () {
 	// 	var fullString = "Account Type: " + this.accountType + ", Account Name: " + this.accountName + ", Balance: " + this.balance;
 	// 	return this.fullString;
@@ -84,12 +98,12 @@ epiphany.main = (function () {
 		this.amount = 0;
 		this.date = 0;
 		this.kind = "Withdraw";
-		this.recipients = [];
+		this.recipient = new Recipient();
 
 		Object.defineProperty(this, "amount", {
 			//space for validation, or event handling - structured access to your class' data
 			get: function () { return this.amount; },
-			set: function(difAmount) { this.amount = difAmount } 
+			set: function(difAmount) { this.amount = difAmount }
 		})
 
 		Object.defineProperty(this, "id", {
@@ -153,7 +167,7 @@ epiphany.main = (function () {
 
 		Object.defineProperty(this, "name", {
 			get: function () { return this.name; },
-			set: function(name) { this.name = name } 
+			set: function(name) { this.name = name }
 		})
 	}
 
@@ -243,37 +257,37 @@ epiphany.main = (function () {
 		Object.defineProperty(this, "streetNumber", {
 			get: function () { return this.streetNumber; },
 			set: function(
-				/** !number */ streetNumber) { if(streetNumber>0) this.streetNumber = streetNumber } 
+				/** !number */ streetNumber) { if(streetNumber>0) this.streetNumber = streetNumber }
 		})
-		
+
 		Object.defineProperty(this, "street", {
 			get: function () { return this.street; },
 			set: function(
-				/** !string */ street) { this.street = street } 
+				/** !string */ street) { this.street = street }
 		})
 
 		Object.defineProperty(this, "city", {
 			get: function () { return this.city; },
 			set: function(
-				/** !string */ city) { this.city = city } 
+				/** !string */ city) { this.city = city }
 		})
 
 		Object.defineProperty(this, "state", {
 			get: function () { return this.state; },
 			set: function(
-				/** !string */ state) { this.state = state } 
+				/** !string */ state) { this.state = state }
 		})
 
 		Object.defineProperty(this, "zipCode", {
 			get: function () { return this.zipCode; },
 			set: function(
-				/** !number */ zipCode) { this.zipCode = zipCode } 
+				/** !number */ zipCode) { this.zipCode = zipCode }
 		})
 
 		Object.defineProperty(this, "country", {
 			get: function () { return this.country; },
 			set: function(
-				/** !string */ country) { this.country = country } 
+				/** !string */ country) { this.country = country }
 		})
 	};
 
@@ -292,4 +306,3 @@ epiphany.main = (function () {
 	// }
 
 }) //end epiphany
-
