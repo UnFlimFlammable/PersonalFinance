@@ -174,7 +174,6 @@ epiphany.main = function () {
 		})
 	}
 
-
 	Recipient.idCounter = 0;
 
 	Recipient.prototype.toString = function () {
