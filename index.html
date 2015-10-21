@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+  </script>
+<title>Personal Finace</title>
+<style>
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+body {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(lightblue, blue);
+
+}
+#login {
+
+}
+</style>
+</head>
+<body>
+  <header>
+  </header>
+
+<div id="login">
+  <form action="/login" method="post">
+    <ul style="list-style:none;">
+      <li>
+        <input type="text" name="userName" id="username" size="16" placeholder="User Name">
+      </li>
+      <li>
+        <input type="password" name="password" id="password" size="16" placeholder="password">
+      </li>
+      <li>
+        <input type="button" value="login" id="formsubmit">
+      </li>
+    </ul>
+  </form>
+</div>
+<div id="register">
+  <form action="/registerUser" method="post">
+    <ul style="list-style: none;">
+    <li><input type="text" name="fName" id="fname" size="16" placeholder="First Name"></li>
+    <li><input type="text" name="lName" id="lname" size="16" placeholder="Last Name"></li>
+    <li><input type="email" name="email" id="email" size="16" placeholder="Email"></li>
+    <li><input type="text" name="userName" id="username" size="16" placeholder="User Name"></li>
+    <li><input type="password" name="password" id="password" size="16" placeholder="password"></li>
+    <!-- <input type="hidden" name="address" id="address" size="16" value=[> does not work-->
+    <li><input type="text" name="streetNumber" id="streetNumber" size="16" placeholder="Street Number"></li>
+    <li><input type="text" name="street" id="street" size="16" placeholder="street"></li>
+    <li><input type="text" name="city" id="city" size="16" placeholder="city"></li>
+    <li><input type="text" name="state" id="state" size="16" placeholder="state"></li>
+    <li><input type="text" name="zipCode" id="zipCode" size="16" placeholder="Zip Code"></li>
+    <li><input type="text" name="country" id="country" size="16" placeholder="Country"></li>
+    <!--<input type="hidden" name="]" value=]>-->
+    <li><input type="button" id="formsubmit" value="Register"></li>
+    </ul>
+  </form>
+</div>
+</body>
+</html>

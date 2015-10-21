@@ -1,18 +1,19 @@
 var express = require('express');
-var epiphany = require('./PersonalCheckingApp.js');
 var MongoClient = require('mongodb').MongoClient;
 var url = require('url');
 
+var epiphany = require('./js/User.js');
 
 var app = express();
+app.set('view engine', 'jade');  //Using Jade as our templating engine
+
 
 app.get('/', function (req, res) {
-  res.send('<h1>Hello World!</h1>');
+  res.render('index', { title: 'Hey', message: 'Hello there!'});
 });
 
 app.get('/login', function(req, res){
   var url_parts = url.parse(req.url, true);
-  var query = url_parts.query;
   MongoClient.connect("mongodb://personalFinance:mugsymugsy@ds039484.mongolab.com:39484/personalfinance", function(err, db) {
     db.createCollection('users', {strict:true}, function(err, collection) {});
     if(err) {
@@ -21,7 +22,7 @@ app.get('/login', function(req, res){
     }
 
     var collection = db.collection('users');
-    var cursor = collection.find(url_parts.query.user);
+    var cursor = collection.find(req.query.user);
 
     cursor.each(function(err, doc){
       if(doc != null){
@@ -45,10 +46,11 @@ app.get('/registerUser', function(req, res){
     }
 
     var collection = db.collection('Users');
-    var user = url.parse(req.url, true).query.user;
+    var user = req.query.user;
 
     collection.insert(user);
     var cursor = db.Users.find(user);
+
     if(cursor.hasNext()){
       res.send(db.Users.find(user).next());
     }
