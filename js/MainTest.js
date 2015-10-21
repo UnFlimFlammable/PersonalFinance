@@ -1,6 +1,7 @@
 var Transaction = require("./Transaction.js");
 var Transactions = require("./Transactions.js");
 var User = require("./User.js");
+var Address = require("./Address.js");
 var Account = require("./Account.js");
 var Accounts = require("./Accounts.js");
 
@@ -26,14 +27,14 @@ t1.amount = 60;
 console.log("\nTHE TRANSACTIONS: " + JSON.stringify(transactions));
 
 
-console.log("\n****************************************************\n")
-console.log("TESTING ACCOUNTS");
+console.log("****************************************************\n")
+console.log("\nTESTING ACCOUNTS");
 
-var accounts = new Accounts();
+var davidAccounts = new Accounts();
 var acct1 = new Account();
 var acct2 = new Account();
 
-accounts.subscribe("added", function(value) {
+davidAccounts.subscribe("added", function(value) {
   console.log("\nAccount Added: " + JSON.stringify(value));
 });
 
@@ -41,10 +42,22 @@ acct1.subscribe("changed", function (value) {
     console.log("\nAccount Changed: " + JSON.stringify(value));
 });
 
-accounts.add(acct1);
-accounts.add(acct2);
+davidAccounts.add(acct1);
+davidAccounts.add(acct2);
 
-acct1.accountName = "David";
+acct1.accountName = "David's Checking";
 
-console.log("\n****************************************************\n")
-console.log("TESTING USERS");
+
+console.log("****************************************************\n")
+console.log("\nTESTING USERS");
+
+var davidUser = new User('David', 'pw', 'email@google.com');
+
+davidUser.subscribe("changed", function (value) {
+  console.log("\nUser Changed: " + JSON.stringify(value));
+});
+
+var davidAddress = new Address(4547, 'E Yale Ave', 'Denver', 'CO', 66208, 'United States');
+
+davidUser.address = davidAddress;
+davidUser.accounts = davidAccounts;
