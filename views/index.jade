@@ -1,7 +1,7 @@
 html
   head
     title Epiphany Banking
-
+    link(rel='stylesheet' type='text/css' href='style.css')
   body
     h1  Welcome To Epiphany Banking
 
@@ -12,12 +12,12 @@ html
             td
               h3  Email:
             td
-              input(type='text')
+              input(type='text' name='email')
           tr
             td
               h3 Password:
             td
-              input(type='password')
+              input(type='password' name='password')
           tr
             td(colspan='2')
               input(type='submit')
