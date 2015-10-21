@@ -9,47 +9,98 @@ define(function (require) {
     /* THE TRANSACTION CLASS */
 
     /** @constructor */
-    function Transaction() {
-      this.id = Transaction.idCounter++;
-      this.amount = 0;
-      this.date = 0;
-      this.kind = "Withdraw";
-      this.recipient = new Recipient();
+    function Transaction(
+      /** !date */ date,
+      /** !string */ description,
+      /** !number */ amount,
+      /** !Recipient */ recipient) {
 
-      Object.defineProperty(this, "amount", {
-        //space for validation, or event handling - structured access to your class' data
-        get: function () { return this.amount; },
-        set: function(difAmount) { this.amount = difAmount }
-      })
+      var id = Transaction.idCounter++;
+      var date = date;
+      var description = description;
+      var amount = amount;
+      var recipient = recipient;
+      var kind = "Withdraw";
 
       Object.defineProperty(this, "id", {
-        get: function () { return this.id; },
-        set: function(difId) { if(difId>0 && difId>Transaction.idCounter) {this.id = difId;
-          } else {Console.log("Id must be greater than zero and greater than other ids.")}}
-      })
+        get: function () { return this.id; }
+      });
+
+      Object.defineProperty(this, "date", {
+          get: function () { return date; },
+          set: function (value) {
+            if(typeof value === 'date') {
+              date = value;
+            }
+
+              this.notify("changed", this);
+          }
+      });
+
+      Object.defineProperty(this, "amount", {
+          get: function () { return this.amount; },
+          set: function(value) {
+            if(typeof value === 'number') {
+              this.amount = value;
+            }
+            this.notify("changed", this);
+          }
+      });
+
+      Object.defineProperty(this, "description", {
+          get: function () { return description; },
+          set: function (value) {
+            if (typeof value === 'string') {
+              description = value;
+            } else {console.log('Transaction.description argument was not typeof string');}
+            this.notify("changed", this);
+          }
+      });
+
+      Object.defineProperty(this, "recipient", {
+          get: function () { return recipient; },
+          set: function (value) {
+            if(typeof value === 'Recipient') {
+              recipient = value;
+            } else {console.log('Transaction.recipient argument was not typeof Recipient');}
+            this.notify("changed", this);
+          }
+      });
 
       Object.defineProperty(this, "kind", {
-        //space for validation, or event handling - structured access to your class' data
         get: function () { return this.kind; },
         set: function() {
           if(this.amount < 0) {
             this.kind = "Withdraw";
-          } else {
-            "Deposit";
-          }}
-      })
+          } else { "Deposit"; }
+          this.notify('changed', this);
+        }
+      });
+
+      this.toJSON = function () {
+          return {
+              id: this.id,
+              date: this.date,
+              description: this.description,
+              amount: this.amount,
+              kind: this.kind,
+              recipient: this.recipient
+          };
+      };
 
       this.prototype.transferToRecipient = function(AccountFrom, AccountTo){
           //Pass this transaction object to a web service that will post and return a success / fail
           //Make sure to update accounts to reflect the change, force a page reload if necessary
       }
 
-    }
+      subscribable(this);
+
+    } //end Transaction() {} class
 
     Transaction.idCounter = 0;
 
     Transaction.prototype.getIndexOfRecipient = function (
-      /** !string */ recipient) {
+      /** !string */ recipient) { //should the recipient argument be of type string?
       return this.recipients.indexOf(recipient);
     }
 
@@ -71,4 +122,6 @@ define(function (require) {
       }
       return string;
     }
-}
+
+    return Transaction;
+});
