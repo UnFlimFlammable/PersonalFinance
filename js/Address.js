@@ -69,9 +69,9 @@ define(function (require) {
   		Object.defineProperty(this, "zipCode", {
   			get: function () { return zipCode; },
         set: function(/** !number */ value) {
-            if(value>100000 && typeof value === 'number') {
+            if(value>10000 && typeof value === 'number') {
               zipCode = value;
-            } else {console.log('Address.zipCode argument was not typeof number or not >100000');}
+            } else {console.log('Address.zipCode argument was not typeof number or not >10000');}
             this.notify("changed", this);
         }
   		});

@@ -19,14 +19,11 @@ define(function (require) {
 
         this.toJSON = function () {
             var output = [];
-
             for (var i = 0; i < accountList.length; i++) {
-                output.push(list[i]);
+                output.push(accountList[i]);
             }
-
             return output;
         };
-
         subscribable(this);
     }; // end Accounts() {} class
 
