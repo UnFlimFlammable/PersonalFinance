@@ -23,7 +23,7 @@ define(function (require) {
       var kind = "Withdraw";
 
       Object.defineProperty(this, "id", {
-        get: function () { return this.id; }
+        get: function () { return id; }
       });
 
       Object.defineProperty(this, "date", {
@@ -37,10 +37,10 @@ define(function (require) {
       });
 
       Object.defineProperty(this, "amount", {
-          get: function () { return this.amount; },
-          set: function(value) {
+          get: function () { return amount; },
+          set: function (value) {
             if(typeof value === 'number') {
-              this.amount = value;
+              amount = value;
             }
             this.notify("changed", this);
           }
@@ -67,7 +67,7 @@ define(function (require) {
       });
 
       Object.defineProperty(this, "kind", {
-        get: function () { return this.kind; },
+        get: function () { return kind; },
         set: function() {
           if(this.amount < 0) {
             this.kind = "Withdraw";
@@ -87,10 +87,10 @@ define(function (require) {
           };
       };
 
-      this.prototype.transferToRecipient = function(AccountFrom, AccountTo){
-          //Pass this transaction object to a web service that will post and return a success / fail
-          //Make sure to update accounts to reflect the change, force a page reload if necessary
-      }
+      // this.prototype.transferToRecipient = function(AccountFrom, AccountTo){
+      //     //Pass this transaction object to a web service that will post and return a success / fail
+      //     //Make sure to update accounts to reflect the change, force a page reload if necessary
+      // }
 
       subscribable(this);
 

@@ -18,7 +18,7 @@ define(function (require) {
   		var balance = 0;
 
       Object.defineProperty(this, "id", {
-        get: function () { return this.id; }
+        get: function () { return id; }
       });
 
   		Object.defineProperty(this, "accountName", {
@@ -40,6 +40,17 @@ define(function (require) {
           this.notify("changed", this);
         }
   		});
+
+      Object.defineProperty(this, "transactions", {
+        get: function () { return transactions; },
+        set: function(
+          /** !Transactions */ value) {
+          if(typeof value === 'Transactions'){
+            transactions = value;
+          } else {console.log('Account.transactions argument was not typeof Transactions');}
+          this.notify("changed", this);
+        }
+      });
 
   		Object.defineProperty(this, "balance", {
   			get: function () { return balance; }
