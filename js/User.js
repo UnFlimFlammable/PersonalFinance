@@ -11,7 +11,7 @@ define(function (require) {
 
       /** @constructor */
 
-      var User = function(userName, password, email, ) {
+      var User = function(userName, password, email) {
               var id = User.idCounter++;
               var userName = userName;
               var password = password;
@@ -30,8 +30,9 @@ define(function (require) {
                 if(typeof value === 'string') {
                   userName = value;
                 } else {console.log('User.userName argument was not typeof string');}
+                this.notify("changed", this);
               }
-              this.notify("changed", this);
+
   		    });
 
   		    Object.defineProperty(this, "password", {
@@ -40,8 +41,8 @@ define(function (require) {
                 if(typeof value === 'string') {
                   password = value;
                 } else {console.log('User.password argument was not typeof string');}
+                this.notify("changed", this);
               }
-              this.notify("changed", this);
   		    });
 
           Object.defineProperty(this, "email", {
@@ -50,8 +51,8 @@ define(function (require) {
                 if(typeof value === 'string') {
                   email = value;
                 } else {console.log('User.email argument was not typeof string');}
+                this.notify("changed", this);
               }
-              this.notify("changed", this);
           });
 
   		    Object.defineProperty(this, "enabled", {
@@ -61,8 +62,8 @@ define(function (require) {
                 if(value) {
                   email = value;
                 } else {console.log('User.email argument was not typeof string');}
+                this.notify("changed", this);
               }
-              this.notify("changed", this);
   		    });
 
   		    // Object.defineProperty(this, "address", {
@@ -109,5 +110,5 @@ define(function (require) {
       module.exports = User;
 
       return User;
-      
+
   });

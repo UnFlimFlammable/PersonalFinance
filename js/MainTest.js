@@ -1,7 +1,8 @@
 var Transaction = require("./Transaction.js");
-var Transaction = require("./User.js");
-var Transaction = require("./Account.js");
 var Transactions = require("./Transactions.js");
+// var User = require("./User.js");
+var Account = require("./Account.js");
+var Accounts = require("./Accounts.js");
 
 var transactions = new Transactions();
 var t1 = new Transaction(new Date(), "First Transaction", 50);
@@ -24,3 +25,20 @@ console.log("THE TRANSACTIONS: " + JSON.stringify(transactions));
 
 
 console.log("****************************************************\n")
+
+var accounts = new Accounts();
+var acct1 = new Account();
+var acct2 = new Account();
+
+accounts.subscribe("added", function(value) {
+  console.log("Account Added: " + JSON.stringify(value));
+});
+
+acct1.subscribe("changed", function (value) {
+    console.log("Account Changed: " + JSON.stringify(value));
+});
+
+accounts.add(acct1);
+accounts.add(acct2);
+
+acct1.accountName = "David";
