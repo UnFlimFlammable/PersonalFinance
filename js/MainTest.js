@@ -5,7 +5,7 @@ var Address = require("./Address.js");
 var Account = require("./Account.js");
 var Accounts = require("./Accounts.js");
 
-console.log("\n****************************************************\n")
+console.log("\n****************************************************")
 console.log("TESTING TRASACTIONS");
 var transactions = new Transactions();
 var t1 = new Transaction(new Date(), "First Transaction", 50);
@@ -27,8 +27,8 @@ t1.amount = 60;
 console.log("\nTHE TRANSACTIONS: " + JSON.stringify(transactions));
 
 
-console.log("****************************************************\n")
-console.log("\nTESTING ACCOUNTS");
+console.log("\n****************************************************")
+console.log("TESTING ACCOUNTS");
 
 var davidAccounts = new Accounts();
 var acct1 = new Account();
@@ -48,8 +48,8 @@ davidAccounts.add(acct2);
 acct1.accountName = "David's Checking";
 
 
-console.log("****************************************************\n")
-console.log("\nTESTING USERS");
+console.log("\n****************************************************")
+console.log("TESTING USERS");
 
 var davidUser = new User('David', 'pw', 'email@google.com');
 
