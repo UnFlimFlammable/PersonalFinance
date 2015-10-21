@@ -21,7 +21,7 @@ app.get('/login', function(req, res){
     }
 
     var collection = db.collection('users');
-    var cursor = collection.find(url_parts.query);
+    var cursor = collection.find(url_parts.query.user);
 
     cursor.each(function(err, doc){
       if(doc != null){
@@ -52,8 +52,6 @@ app.get('/registerUser', function(req, res){
     if(cursor.hasNext()){
       res.send(db.Users.find(user).next());
     }
-
-
   });
 });
 
