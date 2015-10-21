@@ -1,28 +1,33 @@
 var express = require('express');
 var MongoClient = require('mongodb').MongoClient;
 var url = require('url');
-
-var epiphany = require('./js/User.js');
-
+var User = require('./js/User.js');
 var app = express();
 app.set('view engine', 'jade');  //Using Jade as our templating engine
 
 
 app.get('/', function (req, res) {
-  res.render('index', { title: 'Hey', message: 'Hello there!'});
+  res.render('index');
+});
+
+app.get('/registerUser', function (req, res) {
+  res.render('registration');
 });
 
 app.get('/login', function(req, res){
   var url_parts = url.parse(req.url, true);
   MongoClient.connect("mongodb://personalFinance:mugsymugsy@ds039484.mongolab.com:39484/personalfinance", function(err, db) {
     db.createCollection('users', {strict:true}, function(err, collection) {});
+
     if(err) {
       res.send("ERROR");
       return console.dir(err);
     }
 
-    var collection = db.collection('users');
-    var cursor = collection.find(req.query.user);
+    var email = req.query.email;
+    var password = req.query.password;
+    var collection = db.collection('Users');
+    var cursor = collection.find({"email":email, "password":password});
 
     cursor.each(function(err, doc){
       if(doc != null){
@@ -36,7 +41,7 @@ app.get('/login', function(req, res){
   });
 });
 
-app.get('/registerUser', function(req, res){
+app.get('/persistNewUser', function(req, res){
   MongoClient.connect("mongodb://personalFinance:mugsymugsy@ds039484.mongolab.com:39484/personalfinance", function(err, db) {
     db.createCollection('Users', {strict:true}, function(err, collection) {}); //ignores the statement if collection already exists
 
@@ -46,7 +51,14 @@ app.get('/registerUser', function(req, res){
     }
 
     var collection = db.collection('Users');
-    var user = req.query.user;
+    var userName = req.query.name;
+    var userEmail = req.query.email;
+    var userPassword = req.query.password;
+
+    var user = new User();
+    user.userName.set(userName);
+    user.email.set(userEmail);
+    user.password.set(userPassword);
 
     collection.insert(user);
     var cursor = db.Users.find(user);
