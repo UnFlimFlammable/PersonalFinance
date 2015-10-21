@@ -51,5 +51,7 @@ define(function (require) {
       return string;
     }
 
+    module.exports = Recipient;
+
     return Recipient;
 });

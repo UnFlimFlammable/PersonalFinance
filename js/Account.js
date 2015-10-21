@@ -116,6 +116,8 @@ define(function (require) {
     	this.balance -= transaction.amount;
     }
 
+    module.exports = Account;
+
     return Account;
 
 });
