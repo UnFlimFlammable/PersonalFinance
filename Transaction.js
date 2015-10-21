@@ -32,7 +32,6 @@ define(function (require) {
             if(typeof value === 'date') {
               date = value;
             }
-
               this.notify("changed", this);
           }
       });
