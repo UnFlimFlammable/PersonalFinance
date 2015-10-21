@@ -1,9 +1,7 @@
 var express = require('express');
 var MongoClient = require('mongodb').MongoClient;
 var url = require('url');
-
 var epiphany = require('./js/User.js');
-
 var app = express();
 app.set('view engine', 'jade');  //Using Jade as our templating engine
 
