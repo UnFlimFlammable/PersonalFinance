@@ -50,8 +50,8 @@ define(function (require) {
           if(typeof value === 'string') {
               city = value
             } else {console.log('Address.city argument was not typeof string');}
+            this.notify("changed", this);
          }
-         this.notify("changed", this);
   		});
 
   		Object.defineProperty(this, "state", {
@@ -60,8 +60,8 @@ define(function (require) {
           if(typeof value === 'string') {
               state = value;
             } else {console.log('Address.state argument was not typeof string');}
+            this.notify("changed", this);
          }
-         this.notify("changed", this);
   		});
 
   		Object.defineProperty(this, "zipCode", {
@@ -80,8 +80,8 @@ define(function (require) {
           if(typeof value === 'string') {
               country = value;
             } else {console.log('Address.country argument was not typeof string');}
+            this.notify("changed", this);
          }
-         this.notify("changed", this);
   		});
 
       this.toJSON = function () {

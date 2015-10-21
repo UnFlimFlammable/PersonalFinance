@@ -25,8 +25,8 @@ define(function (require) {
           if(typeof value === 'string') {
             name = value
           } else {console.log('Recipient.name argument was not typeof string');}
-        }
         this.notify("changed", this);
+        }
       });
 
       this.toJSON = function () {
