@@ -1,0 +1,27 @@
+html
+  head
+    link(rel="stylesheet" type="text/css" href="style.css")
+    title Register | Epiphany Banking
+  body
+    h1  Create an Account
+    form(action='/persistNewUser')
+      table
+        tr
+          td  Name
+          td
+            input(type='text' name='name')
+        tr
+          td  Email
+          td
+            input(type='text' name='email')
+        tr
+          td  Password
+          td
+            input(type='password' name='password')
+        tr
+          td  Confirm password
+          td
+            input(type='password')
+        tr
+          td(colspan='2')
+            input(type='submit')
