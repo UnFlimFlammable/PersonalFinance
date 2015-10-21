@@ -6,27 +6,39 @@ define(function (require) {
 
     var subscribable = require("./subscribers.js");
 
-
-/* THE RECIPIENT CLASS */
-
+    /* THE RECIPIENT CLASS */
 
     /** @constructor */
-    function Recipient() {
-      this.id = Recipient.idCounter++;
-      this.name = "";
+    function Recipient(
+      /** !string */ name) {
 
+      var id = Recipient.idCounter++;
+      var name = "";
 
       Object.defineProperty(this, "id", {
-        get: function () { return this.id; },
-        set: function(difId) { if(difId>0 && difId>Recipient.idCounter) {this.id = difId;
-          } else {Console.log("Id must be greater than zero and greater than other ids.")}}
-      })
+        get: function () { return id; }
+      });
 
       Object.defineProperty(this, "name", {
-        get: function () { return this.name; },
-        set: function(name) { this.name = name }
-      })
-    }
+        get: function () { return name; },
+        set: function(value) {
+          if(typeof value === 'string') {
+            name = value
+          } else {console.log('Recipient.name argument was not typeof string');}
+        }
+        this.notify("changed", this);
+      });
+
+      this.toJSON = function () {
+          return {
+              id: this.id,
+              name: this.name,
+          };
+      };
+
+      subscribable(this);
+
+    } // end Recipient () {} class
 
     Recipient.idCounter = 0;
 
@@ -38,8 +50,6 @@ define(function (require) {
       }
       return string;
     }
-}
 
-// Recipient.prototype.toString = function () {
-// 	return "Recipiect: id=" + this.id + ", name=" + this.name;
-// }
+    return Recipient;
+});

@@ -13,7 +13,7 @@ define(function (require) {
       /** !date */ date,
       /** !string */ description,
       /** !number */ amount,
-      /** !Recipient */ recipient) {
+      /** !string */ recipient) {
 
       var id = Transaction.idCounter++;
       var date = date;
@@ -32,7 +32,7 @@ define(function (require) {
             if(typeof value === 'date') {
               date = value;
             }
-              this.notify("changed", this);
+            this.notify("changed", this);
           }
       });
 
@@ -97,21 +97,6 @@ define(function (require) {
     } //end Transaction() {} class
 
     Transaction.idCounter = 0;
-
-    Transaction.prototype.getIndexOfRecipient = function (
-      /** !string */ recipient) { //should the recipient argument be of type string?
-      return this.recipients.indexOf(recipient);
-    }
-
-    Transaction.prototype.addRecipient = function (
-      /** !Recipient */ recipient) {
-      this.recipients.push(recipient);
-    }
-
-    Transaction.prototype.removeRecipient = function (
-      /** !Recipient */ recipient) {
-      this.recipients.splice(getIndexOfRecipient(recipient), 1);
-    }
 
     Transaction.prototype.toString = function () {
       var string;
