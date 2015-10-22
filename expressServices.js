@@ -43,6 +43,10 @@ app.get('/login', function(req, res){
   });
 });
 
+app.get('/test/transactionView', function(req, res){
+  res.render('serverTestViews/transactionView');
+});
+
 app.get('/persistNewUser', function(req, res){
   var user = req.query.user;
   var email = req.query.email;
@@ -89,7 +93,7 @@ app.get('/postTransaction',function(req, res){
 
     //If the transaction is a transfer and requires two parties, pull up the second party from persistence
     if(transaction.kind === "transfer"){
-      fs.readFile("data/users/"+transaction.recipient.email.replace(/@/,"_"), function(err, data){
+      fs.readFile("data/users/"+transaction.recipient.replace(/@/,"_"), function(err, data){
         if(err){
           res.send("Error: Recipient not found");
           return;

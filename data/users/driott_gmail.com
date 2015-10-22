@@ -1,0 +1,1 @@
+{"id":0,"password":"davidnavidad","email":"driott@gmail.com","enabled":true,"address":{},"accounts":[{"id":0,"accountType":"basic","accountName":"Checking","transactions":[],"balance":0}]}

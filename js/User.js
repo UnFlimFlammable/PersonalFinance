@@ -1,3 +1,4 @@
+var Account = require('./Account.js')
 if (typeof define !== 'function') {
     var define = require('amdefine')(module);
 }
@@ -22,7 +23,8 @@ define(function (require) {
           var email = email;
           var enabled = true;
 	        var address = new Address();
-					var accounts =  new Accounts();
+					var accounts = [];
+          accounts.push(new Account("Checking", new Array()));
 
           Object.defineProperty(this, "id", {
               get: function() { return id; }
