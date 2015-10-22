@@ -6,6 +6,7 @@ define(function (require) {
 
     var subscribable = require("./subscribers.js");
     var Address = require("./Address.js");
+    var Accounts = require("./Accounts.js");
 
     /* THE USER CLASS */
 
@@ -21,7 +22,7 @@ define(function (require) {
           var email = email;
           var enabled = true;
 	        var address = new Address();
-					var accounts = [];
+					var accounts =  new Accounts();
 
           Object.defineProperty(this, "id", {
               get: function() { return id; }
@@ -84,19 +85,21 @@ define(function (require) {
               get: function() { return accounts; },
               set: function(
                 /** !Accounts */ value) {
-                accounts = value;
+                if(value instanceof Accounts) {
+                  accounts = value;
+                }
                 this.notify("changed", this);
               },
-              removeAccount: function(
-                /** !Account */ account){
-                this.accounts.splice(this.indexOf(account), 1);
-                this.notify("changed", this);
-              },
-              addAccount: function(
-                /** !Account */ account){
-                this.accounts.push(account);
-                this.notify("changed", this);
-              }
+              // removeAccount: function(
+              //   /** !Account */ account){
+              //   this.accounts.splice(this.indexOf(account), 1);
+              //   this.notify("changed", this);
+              // },
+              // addAccount: function(
+              //   /** !Account */ account){
+              //   this.accounts.push(account);
+              //   this.notify("changed", this);
+              // }
           });
 
           this.toJSON = function () {
