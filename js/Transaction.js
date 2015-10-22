@@ -13,15 +13,20 @@ define(function (require) {
       /** !date */ date,
       /** !string */ description,
       /** !number */ amount,
-      /** !Transaction */ recipient) {
+      /** !User */ recipient,
+      /** !string */ kind
+      ) {
 
       var id = Transaction.idCounter++;
       var date = date;
       var description = description;
       var amount = amount;
       var recipient = recipient;
-      var kind = "Withdraw";
+      var kind = kind;
 
+      if(recipient === undefined){
+        recipient = "Me";
+      }
       Object.defineProperty(this, "id", {
         get: function () { return id; }
       });
