@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <title>Personal Finace</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="../form.js"></script>
 <link href="../style.css" rel="stylesheet" type="text/css">
 </head>
@@ -10,15 +11,14 @@
     <h1>Welcome To Epiphany Banking</h1>
   </header>
 
-<div id="login">
-  <form action="/login" method="post">
+<div id="login" class="forms">
     <ul style="list-style:none;">
         <li><h2>Users Please Login</h2></li>
       <li>
-        <input type="text" name="userName" id="username" size="16" placeholder="User Name">
+        <input type="text" name="userName" id="username" size="20" placeholder="User Name">
       </li>
       <li>
-        <input type="password" name="password" id="password" size="16" placeholder="password">
+        <input type="password" name="password" id="password" size="20" placeholder="password">
       </li>
       <li>
         <input type="button" value="login" id="formsubmit">
@@ -26,25 +26,99 @@
     </ul>
   </form>
 </div>
+
+
 <div id="register">
   <form action="/registerUser" method="post">
     <ul style="list-style: none;">
+    <li><h2>Please Register as a User<li>
     <li><input type="text" name="fName" id="fname" size="16" placeholder="First Name"></li>
     <li><input type="text" name="lName" id="lname" size="16" placeholder="Last Name"></li>
     <li><input type="email" name="email" id="email" size="16" placeholder="Email"></li>
     <li><input type="text" name="userName" id="username" size="16" placeholder="User Name"></li>
     <li><input type="password" name="password" id="password" size="16" placeholder="password"></li>
-    <!-- <input type="hidden" name="address" id="address" size="16" value=[> does not work-->
+    <!-- <input type="hidden" name="address" id="address" size="16" value=[> -->
     <li><input type="text" name="streetNumber" id="streetNumber" size="16" placeholder="Street Number"></li>
     <li><input type="text" name="street" id="street" size="16" placeholder="street"></li>
     <li><input type="text" name="city" id="city" size="16" placeholder="city"></li>
     <li><input type="text" name="state" id="state" size="16" placeholder="state"></li>
     <li><input type="text" name="zipCode" id="zipCode" size="16" placeholder="Zip Code"></li>
     <li><input type="text" name="country" id="country" size="16" placeholder="Country"></li>
-    <!--<input type="hidden" name="]" value=]>-->
     <li><input type="button" id="formsubmit" value="Register"></li>
     </ul>
   </form>
 </div>
+<footer>
+  <div id="btmMenu">
+    <ul id="starter" style="display:visable" >
+        <li id="Checking">Checking</li>
+        <li id="Saving">Saving</li>
+        <li id="Retierment">Retierment</li>
+
+
+      <!-- <li id="firstopt"></li>
+        <li id="secopt"></li> -->
+      <li id="LogOut">Log out</li>
+    </ul>
+      <ul id="CheckingList" style="display:none;">
+         <li id="Checking">Checking</li>
+          <li id="Withdrawl">Withdrawl</li>
+          <li id="Deposit">Deposit</li>
+          <li id="Home">Home</li>
+          <li id="LogOut">Log out</li>
+      </ul>
+      <ul id="SavingList" style="display:none;">
+         <li id="Saving">Saving</li>
+          <li id="Withdrawl">Withdrawl</li>
+          <li id="Deposit">Deposit</li>
+          <li id="Home">Home</li>
+          <li id="LogOut">Log out</li>
+      </ul>
+      <ul id="RetiermentList" style="display:none;">
+         <li id="Retierment">Retierment</li>
+          <li id="Withdrawl">Withdrawl</li>
+          <li id="Deposit">Deposit</li>
+          <li id="Home">Home</li>
+
+          <li id="LogOut">Log out</li>
+        </ul>
+  </div>
+</footer>
+
 </body>
+<script>
+$( "#btmMenu li" )
+  .click(function () {
+    var liclick = $( this ).text();
+    var firstopt = "";
+    firstopt += $( this ).text();
+
+	   if (liclick.indexOf( "Checking" ) !== -1)
+       {
+             $( this ).parent().hide();
+           $( "#CheckingList" ).show();
+       }
+        else if (liclick.indexOf( "Saving" ) !== -1)
+        {
+           $( this ).parent().hide();
+           $( "#SavingList" ).show();
+        }
+        else if (liclick.indexOf( "Retierment" ) !== -1)
+        {
+           $( this ).parent().hide();
+           $( "#RetiermentList" ).show();
+        }
+        else if (liclick.indexOf( "Log out" ) !== -1)
+        {
+           $( this ).parent().hide();
+           //$( "#RetiermentList" ).show();
+        }
+    	else {
+           $( this ).parent().hide();
+           $( "#starter" ).show();
+        }
+    $("#firstopt").text( firstopt );
+  })
+  .change();
+</script>
 </html>
