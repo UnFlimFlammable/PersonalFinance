@@ -1,0 +1,36 @@
+html
+  head
+    link(rel="stylesheet", type="text/css", href="../../style.css")
+    title TransactionForm | Epiphany
+  body
+    form(id='transactionForm');
+      table
+        tr
+          td
+            Sender Email
+          td
+            input(type='text' name='userEmail')
+        tr
+          td
+            Password
+          td
+            input(type='text' name='userPassword')
+        tr
+          td
+            Description
+          td
+            input(type='text' name='transactionDescription')
+        tr
+          td
+            Amount
+          td
+            input(type='number' name='transactionAmount')
+        tr
+          td
+            select(name='transactionType')
+              option(value='Deposit')
+                Deposit
+              option(value='Withdrawal')
+                Withdrawal
+              option(value='Transfer')
+                Transfer
