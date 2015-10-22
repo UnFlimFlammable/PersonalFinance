@@ -62,7 +62,7 @@ require(["Transaction.js", "Transactions.js"], function (Transaction, Transactio
         newTransaction.
 
 
-        $.ajax("/postTransaction?email="+$("#userTransactionEmail").val()+"&password="+$("userTransactionPassword").val()
+        $.ajax("/postTransaction?email="+$("#userFromEmail").val()+"&password="+$("userFromPassword").val()
             +"&transaction="+.val()+""
 
 
