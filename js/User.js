@@ -111,6 +111,16 @@ define(function (require) {
               };
           };
 
+          this.getById = function (id) {
+            var id = parseInt(id, 10);
+
+            if(isNAN(id)) {
+                console.log("User.getById(id) failed: id isNaN.");
+            } else {
+                //TODO lookup userID in the DB and return User with id.
+            }
+          };
+
           subscribable(this);
 
       } // end User() {} class

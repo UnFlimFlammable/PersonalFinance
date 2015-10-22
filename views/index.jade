@@ -1,23 +1,23 @@
-html
-  head
-    title Epiphany Banking
-    link(rel='stylesheet' type='text/css' href='style.css')
-  body
-    h1  Welcome To Epiphany Banking
-
-    div(id='loginForm')
-      form(action='/login')
-        table
-          tr
-            td
-              h3  Email:
-            td
-              input(type='text' name='email')
-          tr
-            td
-              h3 Password:
-            td
-              input(type='password' name='password')
-          tr
-            td(colspan='2')
-              input(type='submit')
+doctype html
+  html
+    head
+      title Epiphany Banking
+      link(rel='stylesheet' type='text/css' href='style.css')
+    body
+      header
+        h1  Welcome To Epiphany Banking
+          p The best personal finace keeper this side of the darknet.
+      id='loginForm'
+        form(action='/login' method='post')
+          ul
+            li h2 Users Please Login
+            li input(type="text", name="userName", size="24", placeholder="User Name")
+            li input(type="text", name="password", sive="24", placeholder="Password")
+            li input(type="button", value="login", id="formsubmit")
+    footer
+      id='btnMenu'
+        ul
+          li textbox
+          li account
+          li profile
+          li logout
