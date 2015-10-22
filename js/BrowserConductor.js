@@ -34,4 +34,14 @@ require(["Transaction.js", "Transactions.js"], function (Transaction, Transactio
     window.addEventListener("unload", function () {
         localStorage.setItem("transactions", JSON.stringify(transactions));
     });
+
+    $("#form").submit(
+        $.ajax("/login?email="+$("#someUSer").val()+"&password="+$("#somepass").val(),{
+            success: function(data, textStatus, jqXHR){
+            //data is response
+            //do something with data parse to user
+            }
+        });
+    );
+    
 });
