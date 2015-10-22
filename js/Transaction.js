@@ -10,10 +10,10 @@ define(function (require) {
 
     /** @constructor */
     function Transaction(
-      /** !date */ date,
+      /** !Date */ date,
       /** !string */ description,
       /** !number */ amount,
-      /** !User */ recipient,
+      /** !string */ recipient,
       /** !string */ kind
       ) {
 
@@ -33,18 +33,22 @@ define(function (require) {
 
       Object.defineProperty(this, "date", {
           get: function () { return date; },
-          set: function (value) {
-            if(value instanceof Date) {
-              date = value;
-            }
+          set: function (
+            /** !string */ value) {
+            var intDate = Date.parse(value);
+            date = new Date(intDate);
             this.notify("changed", this);
           }
       });
 
       Object.defineProperty(this, "amount", {
           get: function () { return amount; },
-          set: function (value) {
-            if(typeof value === 'number') {
+          set: function (
+            /** !string */ value) {
+            var value = parseInt(value);
+            if(isNaN(value)) {
+              Console.log("Transaction.amount failed. Argument could not be converted to a number.")
+            } else {
               amount = value;
             }
             this.notify("changed", this);
@@ -53,7 +57,8 @@ define(function (require) {
 
       Object.defineProperty(this, "description", {
           get: function () { return description; },
-          set: function (value) {
+          set: function (
+            /** !string */ value) {
             if (typeof value === 'string') {
               description = value;
             } else {console.log('Transaction.description argument was not typeof string');}
@@ -63,10 +68,11 @@ define(function (require) {
 
       Object.defineProperty(this, "recipient", {
           get: function () { return recipient; },
-          set: function (value) {
-            if(typeof value === 'Recipient') {
+          set: function (
+            /**!string */ value) {
+            if(typeof value === "string") {
               recipient = value;
-            } else {console.log('Transaction.recipient argument was not typeof Recipient');}
+            } else {console.log('Transaction.recipient argument was not typeof string');}
             this.notify("changed", this);
           }
       });
