@@ -3,13 +3,13 @@ var User = require('./js/User.js');
 var Account = require('./js/Account.js');
 var Transaction = require('./js/Transaction.js');
 var fs = require('fs');
-
+var path = require('path');
 var app = express();
 app.set('view engine', 'jade');  //Using Jade as our templating engine
 
 
 app.get('/', function (req, res) {
-  res.send('index');
+  res.sendFile('index.html', { root: path.join(__dirname, './views/') });
 });
 
 app.get('/registerUser', function (req, res) {
