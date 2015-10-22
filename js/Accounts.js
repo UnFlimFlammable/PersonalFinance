@@ -13,7 +13,12 @@ define(function (require) {
 
         this.add = function (
         /** !Account */ account) {
-            accountList.push(account);
+            if (value instanceof Account) {
+                accountList.push(account);
+            } else {
+                console.log("Accounts.push failed. Argument must be instanceof Account");
+            }
+            
             this.notify("added", account);
         };
 

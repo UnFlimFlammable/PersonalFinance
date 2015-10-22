@@ -67,7 +67,7 @@ define(function (require) {
             });
             //returning the sorted array:
             return array;
-        }
+        };
 
        this.sortTransactionsByAmount = function(){
             this.transactions.sort(function(a, b){
@@ -75,7 +75,7 @@ define(function (require) {
                 if(a.amount > b.amount) return 1;
             return 0;
             });
-        }
+        };
 
         subscribable(this);
 
@@ -88,8 +88,6 @@ define(function (require) {
             this.add(new Transaction(t.date, t.description, t.amount, t.recipient));
         }
     };
-
-
    
 
     
