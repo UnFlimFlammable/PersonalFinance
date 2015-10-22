@@ -10,10 +10,10 @@ define(function (require) {
 
     /** @constructor */
     function Transaction(
-      /** !date */ date,
+      /** !Date */ date,
       /** !string */ description,
       /** !number */ amount,
-      /** !Transaction */ recipient) {
+      /** !User */ recipient) {
 
       var id = Transaction.idCounter++;
       var date = date;
@@ -28,18 +28,22 @@ define(function (require) {
 
       Object.defineProperty(this, "date", {
           get: function () { return date; },
-          set: function (value) {
-            if(value instanceof Date) {
-              date = value;
-            }
+          set: function (
+            /** !string */ value) {
+            var intDate = Date.parse(value);
+            date = new Date(intDate);
             this.notify("changed", this);
           }
       });
 
       Object.defineProperty(this, "amount", {
           get: function () { return amount; },
-          set: function (value) {
-            if(typeof value === 'number') {
+          set: function (
+            /** !string */ value) {
+            var value = parseInt(value);
+            if(isNaN(value)) {
+              Console.log("Transaction.amount failed. Argument could not be converted to a number.")
+            } else {
               amount = value;
             }
             this.notify("changed", this);
@@ -59,9 +63,12 @@ define(function (require) {
       Object.defineProperty(this, "recipient", {
           get: function () { return recipient; },
           set: function (value) {
-            if(typeof value === 'Recipient') {
+
+            //!!!TODO need to get a user from a string...
+
+            if(value instanceof User) {
               recipient = value;
-            } else {console.log('Transaction.recipient argument was not typeof Recipient');}
+            } else {console.log('Transaction.recipient argument was not instanceof User');}
             this.notify("changed", this);
           }
       });
