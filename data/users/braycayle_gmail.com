@@ -1,1 +1,1 @@
-{"id":0,"password":"ccc","email":"braycayle@gmail.com","enabled":true,"address":{},"accounts":[]}
+{"id":0,"password":"cccc","email":"braycayle@gmail.com","enabled":true,"address":{},"accounts":[{"id":0,"accountType":"basic","accountName":"Checking","transactions":[],"balance":0}]}
