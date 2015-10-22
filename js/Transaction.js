@@ -13,7 +13,7 @@ define(function (require) {
       /** !Date */ date,
       /** !string */ description,
       /** !number */ amount,
-      /** !User */ recipient,
+      /** !string */ recipient,
       /** !string */ kind
       ) {
 
@@ -57,7 +57,8 @@ define(function (require) {
 
       Object.defineProperty(this, "description", {
           get: function () { return description; },
-          set: function (value) {
+          set: function (
+            /** !string */ value) {
             if (typeof value === 'string') {
               description = value;
             } else {console.log('Transaction.description argument was not typeof string');}
@@ -67,13 +68,11 @@ define(function (require) {
 
       Object.defineProperty(this, "recipient", {
           get: function () { return recipient; },
-          set: function (value) {
-
-            //!!!TODO need to get a user from a string...
-
-            if(value instanceof User) {
+          set: function (
+            /**!string */ value) {
+            if(typeof value === "string") {
               recipient = value;
-            } else {console.log('Transaction.recipient argument was not instanceof User');}
+            } else {console.log('Transaction.recipient argument was not typeof string');}
             this.notify("changed", this);
           }
       });

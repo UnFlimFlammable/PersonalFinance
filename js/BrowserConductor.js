@@ -52,29 +52,25 @@ require(["Transaction.js", "Transactions.js"], function (Transaction, Transactio
             error: function(XMLHttpRequest, textStatus, errorThrown) { 
                 console.log("Status: " + textStatus); alert("Error: " + errorThrown); 
             }
-        });
-    );
+        }); // end AJAX
+    );//end submit login
 
     $('#transactionForm').submit(
 
         //new Transaction (amount, recipient, description, Date)
-        var newTransaction = new Transaction(new Date($('transactionDate')), $('transactionDescription').val(), $("transferTo").val());
-        newTransaction.
-
+        var newTransaction = new Transaction(new Date($('transactionDate')), $('transactionDescription').val(), 
+                $('transferAmount').val(), $('transferRecipient').val(), "transfer");
 
         $.ajax("/postTransaction?email="+$("#userFromEmail").val()+"&password="+$("userFromPassword").val()
-            +"&transaction="+.val()+""
-
-
-
-
-
-
-
-
-
-
-    );
+            +"&transaction="+newTransaction.stringify, {
+                success:function(data, textStatus, jqXHR) {
+                    $("#div")
+                }, 
+                error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                console.log("Status: " + textStatus); alert("Error: " + errorThrown); 
+            }
+        }); // end AJAX
+    ); //end submit transaction
     
 });
 
