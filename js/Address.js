@@ -15,14 +15,16 @@ define(function (require) {
       /** !string */ city,
       /** !string */ state,
       /** !number */ zipCode,
-      /** !string */ country ) {
+      /** !string */ street,
+      /** !string */ country
+     ) {
 
   		var streetNumber = streetNumber;
   		var street = street;
   		var city = city;
   		var state = state;
   		var zipCode = zipCode;
-  		var county = country;
+  		var country = country;
 
   		Object.defineProperty(this, "streetNumber", {
   			get: function () { return streetNumber; },

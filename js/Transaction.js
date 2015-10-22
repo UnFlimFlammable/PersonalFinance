@@ -13,7 +13,7 @@ define(function (require) {
       /** !date */ date,
       /** !string */ description,
       /** !number */ amount,
-      /** !string */ recipient) {
+      /** !Transaction */ recipient) {
 
       var id = Transaction.idCounter++;
       var date = date;

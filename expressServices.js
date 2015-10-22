@@ -24,10 +24,10 @@ app.get('/login', function(req, res){
       return console.dir(err);
     }
 
-    var email = req.query.email;
-    var password = req.query.password;
+    var userEmail = req.query.email;
+    var userPassword = req.query.password;
     var collection = db.collection('Users');
-    var cursor = collection.find({"email":email, "password":password});
+    var cursor = collection.find({email:userEmail, password:userPassword});
 
     cursor.each(function(err, doc){
       if(doc != null){
@@ -68,6 +68,39 @@ app.get('/persistNewUser', function(req, res){
     }
   });
 });
+
+
+app.get('/postTransaction',function(req, res){
+  MongoClient.createCollection("mongodb://personalFinance:mugsymugsy@ds039484.mongolab.com:39484/personalfinance", function(err, db){
+    var userEmail = req.query.email;
+    var userPassword = req.query.password;
+    var transaction = req.query.transaction;
+
+    cursor = db.Users.find({"email":userEmail, "password":userPassword});
+    if(!cursor.hasNext()){
+      res.send("AuthenticationError: User Not Found");
+      return;
+    }
+
+    var user = cursor.next();
+
+    cursor = db.Users.find({"email":transaction.recipient.email});
+    if(!cursor.hasNext()){
+      res.send("Transaction Error: Recipient not found.");
+      return;
+    }
+
+    var recipient = cursor.next();
+
+
+    user.accounts[0].balance -= transaction.amount;
+    recipient.accounts[0].balance += transaction.amount;
+
+    var userBalance = user.accounts[0].balance;
+    var recipientBalance = recipient.accounts[0].balance;
+  });
+});
+
 
 var server = app.listen(3000, function () {
   var host = server.address().address;
