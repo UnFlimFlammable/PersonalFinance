@@ -19,12 +19,25 @@ define(function (require) {
 
         this.toJSON = function () {
             var output = [];
-
             for (var i = 0; i < accountList.length; i++) {
-                output.push(list[i]);
+                output.push(accountList[i]);
             }
-
             return output;
+        };
+
+        this.getById = function (id) {
+            var id = parseInt(id, 10);
+
+            if(isNAN(id)) {
+                console.log("Accounts.getById(id) failed: id isNaN.");
+            } else {
+                var i;
+                for (i=accountList.length; i--;) {
+                    if(accountList[i].id === id) {
+                      return accountList[i];
+                    } 
+                }
+            }
         };
 
         subscribable(this);
@@ -37,6 +50,7 @@ define(function (require) {
             this.add(new Account(t.accountName, t.transactions));
         }
     };
+    
 
     module.exports = Accounts;
 

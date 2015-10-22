@@ -1,7 +1,8 @@
 var express = require('express');
-var MongoClient = require('mongodb').MongoClient;
-var url = require('url');
 var User = require('./js/User.js');
+var Account = require('./js/Account.js');
+var fs = require('fs')
+
 var app = express();
 app.set('view engine', 'jade');  //Using Jade as our templating engine
 
@@ -15,59 +16,62 @@ app.get('/registerUser', function (req, res) {
 });
 
 app.get('/login', function(req, res){
-  var url_parts = url.parse(req.url, true);
-  MongoClient.connect("mongodb://personalFinance:mugsymugsy@ds039484.mongolab.com:39484/personalfinance", function(err, db) {
-    db.createCollection('users', {strict:true}, function(err, collection) {});
+  var email = req.query.email;
+  var password = req.query.password;
 
-    if(err) {
-      res.send("ERROR");
-      return console.dir(err);
+  var fileName = "data/users/" + email.replace(/@/g, "_");
+  fs.readFile(fileName, function(err, data){
+    if(err){
+      console.log(err);
+      res.send("Error: User Not Found");
+      return;
     }
 
-    var email = req.query.email;
-    var password = req.query.password;
-    var collection = db.collection('Users');
-    var cursor = collection.find({"email":email, "password":password});
+    var UserJson = data.toString();
+    var User = JSON.parse(UserJson);
 
-    cursor.each(function(err, doc){
-      if(doc != null){
-        console.log(doc);
-        res.send(doc);
-      }else{
-        console.log("Error, user not found!");
-        res.send("User not found");
-      }
-    });
+    console.log(User.password);
+    console.log(password);
+
+    if(User.password.toString() != password.toString()){
+      res.send("Error: Incorrect Credentials");
+      return;
+    }
+
+    res.send(UserJson);
   });
 });
 
 app.get('/persistNewUser', function(req, res){
-  MongoClient.connect("mongodb://personalFinance:mugsymugsy@ds039484.mongolab.com:39484/personalfinance", function(err, db) {
-    db.createCollection('Users', {strict:true}, function(err, collection) {}); //ignores the statement if collection already exists
+  var user = req.query.user;
+  var email = req.query.email;
+  var password = req.query.password;
+  var newUser = new User(user, password, email);
 
-    if(err) {
-      res.send("ERROR");
-      return console.dir(err);
+  var fileName = "data/users/" + email.replace(/@/g, "_");
+  fs.open(fileName, "wx", function(err, fd){
+    if(err){
+      console.log(err);
+      res.send("Error: User Already Exists");
+      return;
     }
-
-    var collection = db.collection('Users');
-    var userName = req.query.name;
-    var userEmail = req.query.email;
-    var userPassword = req.query.password;
-
-    var user = new User();
-    user.userName.set(userName);
-    user.email.set(userEmail);
-    user.password.set(userPassword);
-
-    collection.insert(user);
-    var cursor = db.Users.find(user);
-
-    if(cursor.hasNext()){
-      res.send(db.Users.find(user).next());
-    }
+    fs.write(fd, JSON.stringify(newUser), function(err, written, string){
+        if(err){
+          console.log(err);
+          res.send(err);
+          return;
+        }
+    });
   });
+  console.log(JSON.stringify(newUser));
+  res.send("Success");
 });
+
+
+app.get('/postTransaction',function(req, res){
+
+});
+
 
 var server = app.listen(3000, function () {
   var host = server.address().address;
