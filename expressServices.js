@@ -9,7 +9,7 @@ app.set('view engine', 'jade');  //Using Jade as our templating engine
 
 
 app.get('/', function (req, res) {
-  res.render('index');
+  res.send('index');
 });
 
 app.get('/registerUser', function (req, res) {
