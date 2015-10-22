@@ -24,6 +24,22 @@ define(function (require) {
             }
             return output;
         };
+
+        this.getById = function (id) {
+            var id = parseInt(id, 10);
+
+            if(isNAN(id)) {
+                console.log("Accounts.getById(id) failed: id isNaN.");
+            } else {
+                var i;
+                for (i=accountList.length; i--;) {
+                    if(accountList[i].id === id) {
+                      return accountList[i];
+                    } 
+                }
+            }
+        };
+
         subscribable(this);
     }; // end Accounts() {} class
 
@@ -34,6 +50,7 @@ define(function (require) {
             this.add(new Account(t.accountName, t.transactions));
         }
     };
+    
 
     module.exports = Accounts;
 

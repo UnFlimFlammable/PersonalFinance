@@ -29,7 +29,7 @@ define(function (require) {
       Object.defineProperty(this, "date", {
           get: function () { return date; },
           set: function (value) {
-            if(typeof value === 'date') {
+            if(value instanceof Date) {
               date = value;
             }
             this.notify("changed", this);

@@ -7,11 +7,11 @@ var Accounts = require("./Accounts.js");
 
 console.log("\n****************************************************")
 console.log("TESTING TRASACTIONS");
-var transactions = new Transactions();
+var dTransactions = new Transactions();
 var t1 = new Transaction(new Date(), "First Transaction", 50);
 var t2 = new Transaction(new Date(), "Second Transaction", 25);
 
-transactions.subscribe("added", function (value) {
+dTransactions.subscribe("added", function (value) {
     console.log("\nTransaction Added: " + JSON.stringify(value));
 });
 
@@ -19,12 +19,12 @@ t1.subscribe("changed", function (value) {
     console.log("\nTransaction Changed: " + JSON.stringify(value));
 });
 
-transactions.add(t1);
-transactions.add(t2);
+dTransactions.add(t1);
+dTransactions.add(t2);
 
 t1.amount = 60;
 
-console.log("\nTHE TRANSACTIONS: " + JSON.stringify(transactions));
+console.log("\nTHE TRANSACTIONS: " + JSON.stringify(dTransactions));
 
 
 console.log("\n****************************************************")
@@ -47,6 +47,7 @@ davidAccounts.add(acct2);
 
 acct1.accountName = "David's Checking";
 
+acct1.transactions = dTransactions;
 
 console.log("\n****************************************************")
 console.log("TESTING USERS");
