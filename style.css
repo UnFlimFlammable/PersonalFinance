@@ -107,6 +107,9 @@ header h1 {
 	height: 400px;
 	border: 1px solid black;
 }
+#transTable tbody, thead, tfoot, tr, td {
+	border: 1px solid black;
+}
 #login {
 	margin: 0 auto;
 	min-height: 150px;
