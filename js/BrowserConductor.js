@@ -1,4 +1,13 @@
-require(["Transaction.js", "Transactions.js"], function (Transaction, Transactions) {
+if (typeof define !== 'function') {
+    var define = require('amdefine')(module);
+}
+
+define(function (require) {
+
+    var subscribable = require("./subscribers.js");
+    var Transaction = require("./Transaction.js");
+
+
 
     // var transactions = new Transactions();
     // transactions.subscribe("added", function (transaction) {
@@ -37,7 +46,10 @@ require(["Transaction.js", "Transactions.js"], function (Transaction, Transactio
 
     //handle the Login
     $("#form").submit(
-        $.ajax("/login?email="+$("#userLoginEmail").val()+"&password="+$("#userLoginPassword").val(),{
+        $.ajax({
+
+            url: "/login?email="+$("#userLoginEmail").val()+"&password="+$("#userLoginPassword").val(), 
+
             success: function(data, textStatus, jqXHR){
                 $('#divLogin').hide();
 
@@ -49,29 +61,34 @@ require(["Transaction.js", "Transactions.js"], function (Transaction, Transactio
 
                 $('#divAccountsSummary').show();
             },  
+            
             error: function(XMLHttpRequest, textStatus, errorThrown) { 
                 console.log("Status: " + textStatus); alert("Error: " + errorThrown); 
             }
-        }); // end AJAX
-    );//end submit login
+        }));//end submit login
 
-    $('#transactionForm').submit(
+    $('#transactionForm').submit(function() {
 
-        //new Transaction (amount, recipient, description, Date)
         var newTransaction = new Transaction(new Date($('transactionDate')), $('transactionDescription').val(), 
                 $('transferAmount').val(), $('transferRecipient').val(), "transfer");
 
-        $.ajax("/postTransaction?email="+$("#userFromEmail").val()+"&password="+$("userFromPassword").val()
-            +"&transaction="+newTransaction.stringify, {
-                success:function(data, textStatus, jqXHR) {
-                    $("#div")
-                }, 
-                error: function(XMLHttpRequest, textStatus, errorThrown) { 
-                console.log("Status: " + textStatus); alert("Error: " + errorThrown); 
-            }
-        }); // end AJAX
-    ); //end submit transaction
-    
+        var newTransactionString = newTransaction.stringify;
+        var targetUrl = "/postTransaction?email="+$("#userFromEmail").val()+"&password="+$("#userFromPassword").val()
+            +"&transaction="+newTransactionString;
+        
+        $.post("/postTransaction", {
+            username: $("#userFromEmail").val(),
+            password: $("#userFromPassword").val(),
+            transaction: newTransactionString
+        }).done(function() {
+            console.log("Success");
+            //TODO UI STUFF
+
+        }).fail(function (XMLHttpRequest, textStatus, errorThrown) { 
+            console.log("Status: " + textStatus); alert("Error: " + errorThrown); 
+        })
+
+    });
 });
 
 

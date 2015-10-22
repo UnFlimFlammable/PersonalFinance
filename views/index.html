@@ -4,14 +4,18 @@
 <title>Personal Finace</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="../form.js"></script>
+<
 <link href="../style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
   <header>
     <h1>Welcome To Epiphany Banking</h1>
+    <h3></h3>
+    <div id="TodayDate">
+    </div>
   </header>
 
-<div id="login" class="forms">
+<div id="login" class="forms" style="display:none;">
     <ul style="list-style:none;">
         <li><h2>Users Please Login</h2></li>
       <li>
@@ -21,35 +25,71 @@
         <input type="password" name="password" id="password" size="20" placeholder="password">
       </li>
       <li>
-        <input type="button" value="login" id="formsubmit">
+        <input type="button" value="login" id="formbutton">
+        <input type="button" value="register" id="formbutton">
       </li>
     </ul>
   </form>
 </div>
 
 
-<div id="register">
-  <form action="/registerUser" method="post">
+<div id="register" style="display:none;">
+  <form action="/persistNewUser" method="post" >
     <ul style="list-style: none;">
     <li><h2>Please Register as a User<li>
     <li><input type="text" name="fName" id="fname" size="16" placeholder="First Name"></li>
     <li><input type="text" name="lName" id="lname" size="16" placeholder="Last Name"></li>
     <li><input type="email" name="email" id="email" size="16" placeholder="Email"></li>
     <li><input type="text" name="userName" id="username" size="16" placeholder="User Name"></li>
-    <li><input type="password" name="password" id="password" size="16" placeholder="password"></li>
+    <li><input type="password" name="password" id="password" size="16" placeholder="Password"></li>
     <!-- <input type="hidden" name="address" id="address" size="16" value=[> -->
     <li><input type="text" name="streetNumber" id="streetNumber" size="16" placeholder="Street Number"></li>
-    <li><input type="text" name="street" id="street" size="16" placeholder="street"></li>
-    <li><input type="text" name="city" id="city" size="16" placeholder="city"></li>
-    <li><input type="text" name="state" id="state" size="16" placeholder="state"></li>
+    <li><input type="text" name="street" id="street" size="16" placeholder="Street"></li>
+    <li><input type="text" name="city" id="city" size="16" placeholder="City"></li>
+    <li><input type="text" name="state" id="state" size="16" placeholder="State"></li>
     <li><input type="text" name="zipCode" id="zipCode" size="16" placeholder="Zip Code"></li>
     <li><input type="text" name="country" id="country" size="16" placeholder="Country"></li>
     <li><input type="button" id="formsubmit" value="Register"></li>
     </ul>
   </form>
 </div>
+
+<div id="accountsummary" display="none">
+<h1><!--UserName --> Account Summary </h1>
+<h2><!-- avaliable funds --> of Avalaible funds</h2>
+</div>
+
+<div id="transaction" display="visable">
+<h1><span class="account"></span> Account</h1>
+<h3>Account Summery</h3>
+<table id="transTable" >
+  <thead>
+    <tr>
+      <th>Transaction Number</th><th>Date</th><th>Description</th><th>Ammount</th><th>Running Ballance</th></tr>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="TransSummery">
+      <td class="TranNumber">1</td><td class="TranDate">10/21/2015</td><td class="Description">Delorian</td><td class="Ammount">$20,000.00</td><td class="runningBallance">broke</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <form>
+      <tr class="AddTransaction">
+        <td class="TranNumber"><input type="number" name="TransNumber" size="8"></td><td class="TransDate"><input type="date" name="transDate"></td><td class="Description"><input type="text" name="transDescription"></td>
+        <td class="Ammount"><input type="number" name="transAmmount"></td><td class="runningBallance"></td>
+
+      </tr>
+    </form>
+  </tfoot>
+
+
+</table>
+</div>
+
+
 <footer>
-  <div id="btmMenu">
+ <div id="btmMenu">
     <ul id="starter" style="display:visable" >
         <li id="Checking">Checking</li>
         <li id="Saving">Saving</li>
@@ -87,12 +127,17 @@
 
 </body>
 <script>
+$(document).ready(function(){
+  var d = new Date();
+  document.getElementById("TodayDate").innerHTML = d.toDateString();
+})
 $( "#btmMenu li" )
   .click(function () {
     var liclick = $( this ).text();
     var firstopt = "";
+    var account = $( this ).text()
     firstopt += $( this ).text();
-
+    $( ".account" ).text(account);
 	   if (liclick.indexOf( "Checking" ) !== -1)
        {
              $( this ).parent().hide();
@@ -118,6 +163,7 @@ $( "#btmMenu li" )
            $( "#starter" ).show();
         }
     $("#firstopt").text( firstopt );
+
   })
   .change();
 </script>
