@@ -118,7 +118,7 @@ define(function (require) {
       return string;
     }
 
-    module.exports = Transaction;
+    //module.exports = Transaction;
 
     return Transaction;
 });

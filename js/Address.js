@@ -110,7 +110,7 @@ define(function (require) {
   		return string;
   	};
 
-    module.exports = Address;
+  //  module.exports = Address;
 
     return Address;
 

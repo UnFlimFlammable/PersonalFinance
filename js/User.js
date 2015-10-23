@@ -1,4 +1,3 @@
-var Account = require('./Account.js')
 if (typeof define !== 'function') {
     var define = require('amdefine')(module);
 }
@@ -142,7 +141,7 @@ define(function (require) {
         return string;
       }
 
-      module.exports = User;
+    //  module.exports = User;
 
       return User;
 

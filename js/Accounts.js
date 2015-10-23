@@ -18,7 +18,7 @@ define(function (require) {
             } else {
                 console.log("Accounts.push failed. Argument must be instanceof Account");
             }
-            
+
             this.notify("added", account);
         };
 
@@ -40,7 +40,7 @@ define(function (require) {
                 for (i=accountList.length; i--;) {
                     if(accountList[i].id === id) {
                       return accountList[i];
-                    } 
+                    }
                 }
             }
         };
@@ -55,9 +55,9 @@ define(function (require) {
             this.add(new Account(t.accountName, t.transactions));
         }
     };
-    
 
-    module.exports = Accounts;
+
+    //module.exports = Accounts;
 
     return Accounts;
 });

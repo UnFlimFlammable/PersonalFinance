@@ -1,5 +1,8 @@
-﻿require(["Transaction.js", "Transactions.js"], function (Transaction, Transactions) {
-    
+
+
+
+require(["Transaction.js", "Transactions.js"], function (Transaction, Transactions) {
+
     var transactions = new Transactions();
     transactions.subscribe("added", function (transaction) {
         var transTable = document.getElementById("transTable");
@@ -9,17 +12,17 @@
         row.insertCell(2).innerHTML = transaction.description;
         row.insertCell(3).innerHTML = transaction.amount;
     });
-    
+
     function initialize(){
         var jsonBlob = localStorage.getItem("transactions");
         if (jsonBlob)
             transactions.fromJSON(JSON.parse(jsonBlob));
-        
+
         document.getElementById("addTrans").addEventListener("click", function () {
             transactions.add(new Transaction(new Date(document.getElementById("transDate").value), document.getElementById("transDesc").value, document.getElementById("transAmt").value));
         });
     };
-    
+
     if (document.readyState == "complete")
         initialize();
     else
@@ -27,7 +30,7 @@
             if (document.readyState == "complete")
                 initialize();
         });
-    
+
     window.addEventListener("unload", function () {
         localStorage.setItem("transactions", JSON.stringify(transactions));
     });

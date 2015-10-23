@@ -13,11 +13,12 @@ define(function (require) {
 
         this.add = function (
             /** !Transaction */ value) {
-            if (value instanceof Transaction) {
-                transactionList.push(value); 
-            } else {
-                console.log('Transactions.add requires instanceof Transaction');
-            }
+            // if (value instanceof Transaction) {
+            console.log("calling the add method");
+              transactionList.push(value);
+            // } else {
+            //     console.log('Transactions.add requires instanceof Transaction');
+            // }
 
             this.notify("added", value);
         };
@@ -54,7 +55,7 @@ define(function (require) {
                 for (i=transactionList.length; i--;) {
                     if(transactionList[i].id === id) {
                       return transactionList[i];
-                    } 
+                    }
                 }
             }
         };
@@ -88,8 +89,8 @@ define(function (require) {
             this.add(new Transaction(t.date, t.description, t.amount, t.recipient));
         }
     };
-   
 
-    
+
+
     return Transactions;
 });
