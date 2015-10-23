@@ -72,11 +72,7 @@ header h1 {
 }
 #accountsummary {
 	min-width: 500px;
-	min-height: 500px;
-	max-width: 700px;
-	max-height: 700px;
-	width: 600px;
-	height: 600px;
+	width: 1000px;
 	background-color: #909090;
 	margin-left:auto;
 	margin-right: auto;
@@ -87,11 +83,7 @@ header h1 {
 
 #transaction {
 	min-width: 500px;
-	min-height: 500px;
-	max-width: 700px;
-	max-height: 700px;
-	width: 600px;
-	height: 600px;
+	width: 1000px;
 	background-color: #909090;
 	margin-left:auto;
 	margin-right: auto;
@@ -102,13 +94,27 @@ header h1 {
 #accountsummary h1, h2 {
 	text-align: center;
 }
+#tableimages {
+	float:left;
+}
+
+
+
 #transTable {
-	width: 400px;
-	height: 400px;
+	width: 800px;
+	min-height: 200px;
+	border: 1px solid black;
+	margin-right: auto;
+	margin-left: auto;
+}
+#transTable tbody, thead, tfoot, tr, td, th {
 	border: 1px solid black;
 }
-#transTable tbody, thead, tfoot, tr, td {
-	border: 1px solid black;
+#transTable thead {
+	background-color: #00cccc;
+}
+#transTable tbody {
+	background-color: #d1d1d1;
 }
 #login {
 	margin: 0 auto;

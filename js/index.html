@@ -54,23 +54,38 @@
   </form>
 </div>
 
-<div id="accountsummary" display="none">
+<div id="accountsummary" style="display:none;">
 <h1><!--UserName --> Account Summary </h1>
 <h2><!-- avaliable funds --> of Avalaible funds</h2>
 </div>
 
-<div id="transaction" display="visable">
+<div id="transaction" style="display:visable;">
 <h1><span class="account"></span> Account</h1>
 <h3>Account Summery</h3>
+<table id="tableimages">
+  <tr>
+    <td>
+      <img src="Withdrawal.jpg">
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="Deposit.jpg">
+    </td>
+  </tr>
+</table>
 <table id="transTable" >
   <thead>
     <tr>
-      <th>Transaction Number</th><th>Date</th><th>Description</th><th>Ammount</th><th>Running Ballance</th></tr>
+      <th>Date</th><th>Transaction Number</th><th>Recipient</th><th>Memo</th><th>Withdrawal</th><th>Deposit</th><th>Running Ballance</th></tr>
     </tr>
   </thead>
-  <tbody>
-    <tr class="TransSummery">
-      <td class="TranNumber">1</td><td class="TranDate">10/21/2015</td><td class="Description">Delorian</td><td class="Ammount">$20,000.00</td><td class="runningBallance">broke</td>
+  <tbody class="TransSummery">
+    <tr>
+      <td class="TranDate">10/21/2015</td><td class="TranNumber">1</td><td class="transRecipient">Gambiling Winings</td><td class="Memo">bet Chicago would loose</td><td class="Ammount">$25,000.00</td><td class="runningBallance"></td>
+    </tr>
+    <tr>
+      <td class="TranDate">10/21/2015</td><td class="TranNumber">2</td><td class="transRecipient">"Doc" Brown</td><td class="Memo">Bought Custom Delorian</td><td class="Ammount">-$20,000.00</td><td class="runningBallance"></td>
     </tr>
   </tbody>
   <tfoot>
@@ -78,7 +93,10 @@
       <tr class="AddTransaction">
         <td class="TranNumber"><input type="number" name="TransNumber" size="8"></td><td class="TransDate"><input type="date" name="transDate"></td><td class="Description"><input type="text" name="transDescription"></td>
         <td class="Ammount"><input type="number" name="transAmmount"></td><td class="runningBallance"></td>
-
+      </tr>
+      <tr>
+        <td colspan="7" display="display:visable"><input type="button" id="transWithdrawal" value="Withdrawal"></td>
+        <td colspan="7" style="display:none;"><input type="button" id="transDeposit" value="Deposit"></td>
       </tr>
     </form>
   </tfoot>
@@ -102,21 +120,21 @@
     </ul>
       <ul id="CheckingList" style="display:none;">
          <li id="Checking">Checking</li>
-          <li id="Withdrawl">Withdrawl</li>
+          <li id="Withdrawal">Withdrawal</li>
           <li id="Deposit">Deposit</li>
           <li id="Home">Home</li>
           <li id="LogOut">Log out</li>
       </ul>
       <ul id="SavingList" style="display:none;">
          <li id="Saving">Saving</li>
-          <li id="Withdrawl">Withdrawl</li>
+          <li id="Withdrawal">Withdrawal</li>
           <li id="Deposit">Deposit</li>
           <li id="Home">Home</li>
           <li id="LogOut">Log out</li>
       </ul>
       <ul id="RetiermentList" style="display:none;">
          <li id="Retierment">Retierment</li>
-          <li id="Withdrawl">Withdrawl</li>
+          <li id="Withdrawal">Withdrawal</li>
           <li id="Deposit">Deposit</li>
           <li id="Home">Home</li>
 
@@ -130,7 +148,14 @@
 $(document).ready(function(){
   var d = new Date();
   document.getElementById("TodayDate").innerHTML = d.toDateString();
-})
+});
+
+$( "#transTable button" ).click(function () {
+  var clickAtr = $(this).text();
+
+
+});
+
 $( "#btmMenu li" )
   .click(function () {
     var liclick = $( this ).text();
